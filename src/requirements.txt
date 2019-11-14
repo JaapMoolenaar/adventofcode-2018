@@ -1,0 +1,4 @@
+gunicorn
+python-levenshtein
+flask
+redis

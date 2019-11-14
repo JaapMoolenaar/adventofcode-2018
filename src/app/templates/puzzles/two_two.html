@@ -1,0 +1,32 @@
+{% extends "public/layout.html" %}
+{% import "macros/input_macros.html" as im %}
+
+{% block title %}Puzzle Two - Part Two{% endblock %}
+
+{% block main %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>{{ self.title() }}</h1>
+
+      <form action="" method="POST" enctype="multipart/form-data">
+        {{ im.input(label="Puzzle input", id="input", type="file", name="input") }}
+        <br>
+        {{ im.button(label="Submit") }}
+      </form>
+
+      {%  if(solution) %}
+        <hr>
+        {%  if(solution) == None %}
+            <div class="alert alert-danger" role="alert">Solution not found...</div>
+        {%  else %}
+            <div class="alert alert-success" role="alert">{{ solution }} in {{ time }}s</div>
+            <img src="{{ url_for('static', filename='img/two_two.png') }}" alt="" style="max-width: 100%">
+        {%  endif %}
+      {%  endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

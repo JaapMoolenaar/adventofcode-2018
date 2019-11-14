@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  {% block style %}{% endblock %}
+  <style>
+    body {
+      background: #4568DC;
+      background: -webkit-linear-gradient(to right, #4568DC, #B06AB3);
+      background: linear-gradient(to right, #4568DC, #B06AB3);
+      min-height: 100vh;
+    }
+
+    code {
+      color: #B06AB3;
+      background: #fff;
+      padding: 0.1rem 0.2rem;
+      border-radius: 0.2rem;
+    }
+
+    .dropdown-submenu {
+      position: relative;
+    }
+
+    .dropdown-submenu > a:after {
+      float: right;
+      display: inline-block;
+      margin-top: .46em;
+      content: "";
+      border-top: .3em solid transparent;
+      border-right: 0;
+      border-bottom: .3em solid transparent;
+      border-left: .3em solid;
+
+    }
+
+    .dropdown-submenu > .dropdown-menu {
+      top: -0.55em;
+      left: 100%;
+      margin-top: 0px;
+      margin-left: 0px;
+    }
+
+    @media (min-width: 991px) {
+      .dropdown-menu {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+    }
+  </style>
+
+  <title>{% block title %}AoC 2018{% endblock %}</title>
+</head>
+<body>
+  {% include "public/nav.html" %}
+  <main class="text-white">
+      {% block main %}{% endblock %}
+  </main>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+          integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+          integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+          crossorigin="anonymous"></script>
+
+  {% block script %}{% endblock %}
+  <script>
+    $(function () {
+      $("ul.dropdown-menu [data-toggle='dropdown']").on("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        $(this).siblings().toggleClass("show");
+
+        if (!$(this).next().hasClass('show')) {
+          $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+        }
+        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
+          $('.dropdown-submenu .show').removeClass("show");
+        });
+
+      });
+    });
+  </script>
+
+  <script>
+    $('.custom-file-input').on('change', function () {
+      let fileName = $(this).val().split('\\').pop();
+      $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% macro input(label="", type="text", id="", name="", placeholder="") -%}
+    {% if type != "file" %}
+        <div class="form-group">
+            <label>{{ label }}</label>
+            <input type="{{ type }}" class="form-control" id="{{ id }}" name="{{ name }}" placeholder="{{ placeholder }}">
+        </div>
+    {%  else %}
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="{{ id }}-custom-file-input-addon">{{ label }}</span>
+            </div>
+            <div class="custom-file">
+                <input class="custom-file-input" type="file" id="{{ id }}-custom-file-input" name="{{ name }}" aria-describedby="{{ id }}-custom-file-input-addon">
+                <label class="custom-file-label" for="{{ id }}-custom-file-input text-truncate">Choose file</label>
+            </div>
+        </div>
+    {% endif %}
+{%- endmacro %}
+
+{% macro button(label="", name="btn_submit", id="", type="submit") -%}
+    <button type="{{ name }}" class="btn btn-primary" id="{{ id }}">{{ label }}</button>
+{%- endmacro %}
