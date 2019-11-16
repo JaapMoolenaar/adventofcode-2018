@@ -1,0 +1,5 @@
+# Default ignored files
+.idea
+
+src/storage/*
+!src/storage/inputs-from-aoc/*
